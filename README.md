@@ -22,6 +22,8 @@ This JavaScript class can be used to extract this data from **JMBG** numbers.
 
 ## Usage
 
+[📚**Wiki**](https://github.com/gornostay25/JMBG-JS/wiki/Usage)
+
 ```javascript
 let jmbg = new JMBG("0101006500006")
 
