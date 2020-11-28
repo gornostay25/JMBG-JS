@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JMBG-JS example</title>
+    <meta http-equiv="author" content="Gornostay25">
+	<script src="js/JMBG.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var jmbg = new JMBG("0101006500006")
+console.log("JmbgValid: "+jmbg.isValid());
+
+console.log("JmbgData: "+jmbg.parse({
+			       ignoreValidation: false,
+			       getGender: true,
+			       getYO:true,
+			       getUTime: true,
+			       getRegion: true,
+			       lang: 1
+}))
+
+
+</script>
+</body>
+</html>
