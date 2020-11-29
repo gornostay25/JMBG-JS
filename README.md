@@ -17,7 +17,7 @@ This JavaScript class can be used to extract this data from **JMBG** numbers.
 ## Installation
 
 ```html
-<script src="https://gornostay25.github.io/JMBG-JS/js/JMBG.js"></script>
+<script src="https://gornostay25.github.io/JMBG-JS/js/JMBG.min.js"></script>
 ```
 
 ## Usage
