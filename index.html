@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JMBG-JS example</title>
+    <meta http-equiv="author" content="Gornostay25">
+	<script src="js/JMBG.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<input id="input" type="number" >
+<button id="button" >get info</button>
+<script type="text/javascript">
+$("#button").click(function(){
+alert(JSON.stringify(
+new JMBG($("#input").val()
+).parse({
+ignoreValidation: true,
+getGender: true,
+getYO:true,
+getUTime: true,
+getRegion: true,
+lang: 1
+}))
+)
+})
+var jmbg = new JMBG("0101006500006")
+console.log("JmbgValid: "+jmbg.isValid());
+
+console.log("JmbgData: "+jmbg.parse({
+			       ignoreValidation: false,
+			       getGender: true,
+			       getYO:true,
+			       getUTime: true,
+			       getRegion: true,
+			       lang: 1
+}))
+
+
+</script>
+</body>
+</html>

@@ -20,13 +20,19 @@ constructor(jmbg){
 		return jmbg.split("");
 	}
 	//get checksum
-	this.validation = function(numArray){
-		let S = (7*(numArray[0]+numArray[6])+6*(numArray[1]+numArray[7])+5*(numArray[2]+numArray[8])+4*(numArray[3]+numArray[9])+3*(numArray[4]+numArray[10])+2*(numArray[5]+numArray[11]))-1
-		let K = S % 11;
-		if(K==1){
-		console.log("JMBG: invalid. "+S+" mod 11=1")
-		return false;
-	
+	this.validation = function(jmbg){
+		let K = 11 -
+		(7 * (Number(jmbg[0]) + Number(jmbg[6])) +
+		6 * (Number(jmbg[1]) + Number(jmbg[7])) +
+		5 * (Number(jmbg[2]) + Number(jmbg[8])) +
+		4 * (Number(jmbg[3]) + Number(jmbg[9])) +
+		3 * (Number(jmbg[4]) + Number(jmbg[10])) +
+		2 * (Number(jmbg[5]) + Number(jmbg[11]))) %
+		11;
+		
+		console.log(K)
+		if(K>9){
+			K = 0;
 		}
 		return K;
 	}
@@ -35,8 +41,23 @@ constructor(jmbg){
 	//is checksum valid
 	isValid(){
 	
-	
-		if(this.jmbg.match(/^\d{13}$/)){
+	try{
+	if(this.jmbg.match(/^\d{13}$/)){
+		
+		let ar = this.GetNumsAtray(this.jmbg);
+		let v = this.validation(ar);
+		if(ar[12] == v){
+			return true;
+		}
+		console.log("JMBG: not Valid");
+		return false;
+		
+	}
+	}catch(e){
+	console.log("JMBG: only 13 numbers!")
+	return false;
+	}
+/*		if(this.jmbg.match(/^\d{13}$/)){
 			
 			let ar = this.GetNumsAtray(this.jmbg);
 			let v = this.validation(ar);
@@ -49,7 +70,7 @@ constructor(jmbg){
 		}else{
 			console.log("JMBG: only 13 numbers!")
 			return false;
-		}
+		}*/
 		
 	}
 	
@@ -93,11 +114,7 @@ constructor(jmbg){
 	
 	//validation
 	if(igVld){
-		if(Vald){
 		jmbgA.valid =  Vald;
-		}else{
-		jmbgA.valid = !Vald;
-		}
 	}else{
 		if(!Vald){
 		return false;
@@ -207,6 +224,7 @@ constructor(jmbg){
 	    langArray[""+48]=("Veles")
 	    langArray[""+49]=("Štip")
 	langArray["c"+50]=("Slovenia")
+		langArray[""+50]=("all")
 	langArray["c"+60]=("Citizens with temporary residence")
 	langArray["c"+70]=("Central Serbia")
 		langArray[""+70]=("Serbian diplomatic/consular")
@@ -292,11 +310,11 @@ constructor(jmbg){
 	//Kosovo
 		jmbgA.country = langArray["c90"]
 	}
-	
+
 	if(gRegn){
-	jmbgA.region = langArray[countr]
+	jmbgA.region = langArray[""+countr]
 	}
-	
+
 	
 	
 	return jmbgA
